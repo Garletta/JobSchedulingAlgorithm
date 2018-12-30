@@ -1,4 +1,4 @@
-# JobSchedulingAlgorithm
+# JobSchedulingAlgorithm(作业调度算法)
 
 用JAVA模拟操作系统作业调度算法，界面用Swing绘制 
   
@@ -20,3 +20,10 @@
 
 ## 程序运行结果
 
+![程序主界面](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/A.png)
+![用户输入作业表](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/B.png)
+![举例](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/C.png)
+![FCFS](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/D.png)
+![SJF](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/E.png)
+![PSA](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/F.png)
+![HRRN](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/G.png)
