@@ -1,26 +1,27 @@
 package OS;
 
+import Introduction.Introduction;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
 
+//可视化界面主体
 public class Windows extends JFrame {
 
     private JLabel welcome;         //欢迎语
     private JLabel Tip;             //提示输入标签
     private JTextField works_queue; //请输入作业数量
+    private JButton commit;         //确认作业数量操作
+    private JButton quit;           //退出程序操作
+
     private JLabel algorithmTitle;  //算法名
     private JTable inputDatas;      //用户输入表
     private JTable outputDatas;     //调度算法结果表
     private JScrollPane scrollPane; //滚动条
-    private JButton commit;         //确认作业数量操作
-    private JButton quit;           //退出程序操作
     private JButton commitFCFS;     //执行先来先服务作业调度算法
     private JButton commitSJF;      //执行短作业优先作业调度算法
     private JButton commitPSA;      //执行优先级作业调度算法
@@ -33,14 +34,14 @@ public class Windows extends JFrame {
     }
 
     public void initWindows() {
-
-        //设置窗体大小、位置、布局、关闭操作、可见性，加入中间容器
+        //设置窗体大小、位置、布局、关闭操作、可见性
         setSize(600,500);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        //加入中间容器（自适应窗体大小），传入主体句柄便于修改主体标题
         MyJPanel panel = new MyJPanel(this);
         setContentPane(panel);
 
@@ -50,7 +51,7 @@ public class Windows extends JFrame {
     //该窗体的中间容器类
     class MyJPanel extends JPanel {
 
-        Windows windows;    //获得当前窗体的句柄
+        private Windows windows;    //获得当前窗体的句柄
 
         public MyJPanel(Windows windows) {
             super();
@@ -74,18 +75,20 @@ public class Windows extends JFrame {
 
         //获得作业调度算法结果的数据，返回Object[][]
         public Object[][] setDatas(ArrayList<JCB> jobs) {
-            Object[][] Datas = new Object[4][jobs.size() + 1];
+            Object[][] Datas = new Object[5][jobs.size() + 1];
             //行头
             Datas[0][0] = "到达时间";
             Datas[1][0] = "服务时间";
             Datas[2][0] = "开始时间";
             Datas[3][0] = "完成时间";
+            Datas[4][0] = "周转时间";
             //行数据
             for (int j = 1; j <= jobs.size(); j++) {
                 Datas[0][j] = jobs.get(j - 1).getArriveTime();
                 Datas[1][j] = jobs.get(j - 1).getServeTime();
                 Datas[2][j] = jobs.get(j - 1).getStartTime();
                 Datas[3][j] = jobs.get(j - 1).getCompleteTime();
+                Datas[4][j] = jobs.get(j - 1).getCyclingTime();
             }
             return Datas;
         }
@@ -130,7 +133,7 @@ public class Windows extends JFrame {
             add(works_queue);
 
             //确认作业数量操作
-            commit = new JButton(new ImageIcon(new File("").getAbsolutePath() + "/commit.png"));
+            commit = new JButton(new ImageIcon(new File("").getAbsolutePath() + "/Images/commit.png"));
             commit.setBounds(150,400,100,40);
             commit.setFont(new Font("华文隶书",0,20));
             commit.setForeground(Color.ORANGE);
@@ -190,7 +193,7 @@ public class Windows extends JFrame {
             add(commit);
 
             //退出程序操作
-            quit = new JButton("退出",new ImageIcon(new File("").getAbsolutePath() + "/anwen.jpg"));
+            quit = new JButton("退出",new ImageIcon(new File("").getAbsolutePath() + "/Images/anwen.jpg"));
             quit.setBounds(350,400,90,40);
             quit.setFont(new Font("华文行楷",0,25));
             quit.setForeground(Color.ORANGE);
@@ -218,7 +221,7 @@ public class Windows extends JFrame {
             algorithmTitle.setVisible(false);
 
             //执行先来先服务作业调度算法
-            commitFCFS = new JButton("FCFS",new ImageIcon(new File("").getAbsolutePath() + "/guangwen.jpg"));
+            commitFCFS = new JButton("FCFS",new ImageIcon(new File("").getAbsolutePath() + "/Images/guangwen.jpg"));
             commitFCFS.setBounds(30,400,90,40);
             commitFCFS.setFont(new Font("华文隶书",0,20));
             commitFCFS.setForeground(Color.ORANGE);
@@ -229,6 +232,38 @@ public class Windows extends JFrame {
             commitFCFS.setVerticalTextPosition(JLabel.CENTER);
             commitFCFS.setMargin(new Insets(0,0,0,0));
             commitFCFS.setBorder(null);
+            commitFCFS.setToolTipText("右击显示算法简介");
+            commitFCFS.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getButton() == e.BUTTON1) {
+                        commitFCFS.doClick();
+                    }
+                    if(e.getButton() == e.BUTTON3) {
+                        new Introduction("FCFS");
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
             commitFCFS.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -285,7 +320,7 @@ public class Windows extends JFrame {
             commitFCFS.setVisible(false);
 
             //执行短作业优先作业调度算法
-            commitSJF = new JButton("SJF",new ImageIcon(new File("").getAbsolutePath() + "/guangwen.jpg"));
+            commitSJF = new JButton("SJF",new ImageIcon(new File("").getAbsolutePath() + "/Images/guangwen.jpg"));
             commitSJF.setBounds(140,400,90,40);
             commitSJF.setFont(new Font("华文隶书",0,20));
             commitSJF.setForeground(Color.ORANGE);
@@ -296,6 +331,38 @@ public class Windows extends JFrame {
             commitSJF.setVerticalTextPosition(JLabel.CENTER);
             commitSJF.setMargin(new Insets(0,0,0,0));
             commitSJF.setBorder(null);
+            commitSJF.setToolTipText("右击显示算法简介");
+            commitSJF.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getButton() == e.BUTTON1) {
+                        commitSJF.doClick();
+                    }
+                    if(e.getButton() == e.BUTTON3) {
+                        new Introduction("SJF");
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
             commitSJF.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -352,7 +419,7 @@ public class Windows extends JFrame {
             commitSJF.setVisible(false);
 
             //执行优先级作业调度算法
-            commitPSA = new JButton("PSA",new ImageIcon(new File("").getAbsolutePath() + "/guangwen.jpg"));
+            commitPSA = new JButton("PSA",new ImageIcon(new File("").getAbsolutePath() + "/Images/guangwen.jpg"));
             commitPSA.setBounds(250,400,90,40);
             commitPSA.setFont(new Font("华文隶书",0,20));
             commitPSA.setForeground(Color.ORANGE);
@@ -363,6 +430,38 @@ public class Windows extends JFrame {
             commitPSA.setVerticalTextPosition(JLabel.CENTER);
             commitPSA.setMargin(new Insets(0,0,0,0));
             commitPSA.setBorder(null);
+            commitPSA.setToolTipText("右击显示算法简介");
+            commitPSA.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getButton() == e.BUTTON1) {
+                        commitPSA.doClick();
+                    }
+                    if(e.getButton() == e.BUTTON3) {
+                        new Introduction("PSA");
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
             commitPSA.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -419,8 +518,8 @@ public class Windows extends JFrame {
             commitPSA.setVisible(false);
 
             //执行高响应比作业调度算法
-            commitHRRN = new JButton("HRRN",new ImageIcon(new File("").getAbsolutePath() + "/guangwen.jpg"));
-            commitHRRN.setBounds(360,400,90,40);
+            commitHRRN = new JButton("HRRN",new ImageIcon(new File("").getAbsolutePath() + "/Images/guangwen.jpg"));
+            commitHRRN.setBounds(360,400,100,40);
             commitHRRN.setFont(new Font("华文隶书",0,20));
             commitHRRN.setForeground(Color.ORANGE);
             commitHRRN.setContentAreaFilled(false);
@@ -430,6 +529,38 @@ public class Windows extends JFrame {
             commitHRRN.setVerticalTextPosition(JLabel.CENTER);
             commitHRRN.setMargin(new Insets(0,0,0,0));
             commitHRRN.setBorder(null);
+            commitHRRN.setToolTipText("右击显示算法简介");
+            commitHRRN.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getButton() == e.BUTTON1) {
+                        commitHRRN.doClick();
+                    }
+                    if(e.getButton() == e.BUTTON3) {
+                        new Introduction("HRRN");
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
             commitHRRN.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -486,8 +617,8 @@ public class Windows extends JFrame {
             commitHRRN.setVisible(false);
 
             //返回上一层菜单
-            back = new JButton("返回",new ImageIcon(new File("").getAbsolutePath() + "/guangwen.jpg"));
-            back.setBounds(470,400,90,40);
+            back = new JButton("返回",new ImageIcon(new File("").getAbsolutePath() + "/Images/guangwen.jpg"));
+            back.setBounds(480,400,90,40);
             back.setFont(new Font("华文行楷",0,24));
             back.setForeground(Color.ORANGE);
             back.setContentAreaFilled(false);
@@ -514,6 +645,7 @@ public class Windows extends JFrame {
                     Tip.setVisible(true);
                     works_queue.setVisible(true);
                     works_queue.setText("");
+                    works_queue.requestFocus();
                     commit.setVisible(true);
                     quit.setVisible(true);
 
@@ -528,8 +660,8 @@ public class Windows extends JFrame {
         }
 
         @Override
-        protected void paintComponent(Graphics g) {
-            ImageIcon icon = new ImageIcon(new File("").getAbsolutePath() + "/backgroud.jpg");
+        protected void paintComponent(Graphics g) { //主体背景
+            ImageIcon icon = new ImageIcon(new File("").getAbsolutePath() + "/Images/backgroud.jpg");
             Image image = icon.getImage();
             g.drawImage(image,0,0,this.getWidth(),this.getHeight(),this);
         }
