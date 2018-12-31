@@ -20,12 +20,12 @@
 
 ## 程序运行结果
 
-![程序主界面](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/A.png)
-![用户输入作业表](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/B.png)
-![右键点击显示算法简介](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/H.png)
-![FCFS算法简介](ttps://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/I.png)
-![举例](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/C.png)
-![FCFS](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/D.png)
-![SJF](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/E.png)
-![PSA](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/F.png)
-![HRRN](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/G.png)
+![程序主界面](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/A.png)  
+![用户输入作业表](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/B.png)  
+![右键点击显示算法简介](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/H.png)  
+![FCFS算法简介](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/I.png)  
+![举例](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/C.png)  
+![FCFS](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/D.png)  
+![SJF](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/E.png)  
+![PSA](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/F.png)  
+![HRRN](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/G.png)  
