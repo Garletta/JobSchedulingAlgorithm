@@ -1,29 +1,37 @@
 package Introduction;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-//算法简介
+//作业调度算法简介
 public class Introduction extends JFrame {
 
     private String Title;   //传参算法名称
+    private MyPanel panel;  //中间容器
 
-    public Introduction(String algorithmName) {
+    public Introduction(String algorithmName) throws IOException {
         super(algorithmName + "算法简介");
         this.Title = algorithmName;
         initIntroduction();
     }
 
-    public void initIntroduction() {
-        //设置窗体大小、位置、布局、关闭操作、可见性，加入中间容器
-        setSize(500,400);
+    public void initIntroduction() throws IOException {
+        //根据背景动态地设置窗体大小
+        File picture = new File(new File("").getAbsolutePath() + "/Images/" + Title + ".png");
+        BufferedImage sourceImg = ImageIO.read(new FileInputStream(picture));
+        setSize(sourceImg.getWidth(),sourceImg.getHeight());
+
+        //位置、布局、关闭操作、可见性，加入中间容器
         setLocationRelativeTo(null);
         setLayout(null);
-        setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        MyPanel panel = new MyPanel();
+        panel = new MyPanel();
         setContentPane(panel);
 
         setVisible(true);

@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 //可视化界面主体
@@ -133,8 +134,8 @@ public class Windows extends JFrame {
             add(works_queue);
 
             //确认作业数量操作
-            commit = new JButton(new ImageIcon(new File("").getAbsolutePath() + "/Images/commit.png"));
-            commit.setBounds(150,400,100,40);
+            commit = new JButton(new ImageIcon(new File("").getAbsolutePath() + "/Images/start.png"));
+            commit.setBounds(150,350,100,100);
             commit.setFont(new Font("华文隶书",0,20));
             commit.setForeground(Color.ORANGE);
             commit.setContentAreaFilled(false);
@@ -144,6 +145,7 @@ public class Windows extends JFrame {
             commit.setVerticalTextPosition(JLabel.CENTER);
             commit.setMargin(new Insets(0,0,0,0));
             commit.setBorder(null);
+            commit.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>确认</font></body></html>");
             commit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -193,8 +195,8 @@ public class Windows extends JFrame {
             add(commit);
 
             //退出程序操作
-            quit = new JButton("退出",new ImageIcon(new File("").getAbsolutePath() + "/Images/anwen.jpg"));
-            quit.setBounds(350,400,90,40);
+            quit = new JButton(new ImageIcon(new File("").getAbsolutePath() + "/Images/stop.png"));
+            quit.setBounds(350,350,100,100);
             quit.setFont(new Font("华文行楷",0,25));
             quit.setForeground(Color.ORANGE);
             quit.setContentAreaFilled(false);
@@ -204,6 +206,7 @@ public class Windows extends JFrame {
             quit.setVerticalTextPosition(JLabel.CENTER);
             quit.setMargin(new Insets(0,0,0,0));
             quit.setBorder(null);
+            quit.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>退出程序</font></body></html>");
             quit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -232,7 +235,7 @@ public class Windows extends JFrame {
             commitFCFS.setVerticalTextPosition(JLabel.CENTER);
             commitFCFS.setMargin(new Insets(0,0,0,0));
             commitFCFS.setBorder(null);
-            commitFCFS.setToolTipText("右击显示算法简介");
+            commitFCFS.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>右击显示算法简介</font></body></html>");
             commitFCFS.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -240,7 +243,11 @@ public class Windows extends JFrame {
                         commitFCFS.doClick();
                     }
                     if(e.getButton() == e.BUTTON3) {
-                        new Introduction("FCFS");
+                        try {
+                            new Introduction("FCFS");
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
 
@@ -331,7 +338,7 @@ public class Windows extends JFrame {
             commitSJF.setVerticalTextPosition(JLabel.CENTER);
             commitSJF.setMargin(new Insets(0,0,0,0));
             commitSJF.setBorder(null);
-            commitSJF.setToolTipText("右击显示算法简介");
+            commitSJF.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>右击显示算法简介</font></body></html>");
             commitSJF.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -339,7 +346,11 @@ public class Windows extends JFrame {
                         commitSJF.doClick();
                     }
                     if(e.getButton() == e.BUTTON3) {
-                        new Introduction("SJF");
+                        try {
+                            new Introduction("SJF");
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
 
@@ -430,7 +441,7 @@ public class Windows extends JFrame {
             commitPSA.setVerticalTextPosition(JLabel.CENTER);
             commitPSA.setMargin(new Insets(0,0,0,0));
             commitPSA.setBorder(null);
-            commitPSA.setToolTipText("右击显示算法简介");
+            commitPSA.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>右击显示算法简介</font></body></html>");
             commitPSA.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -438,7 +449,11 @@ public class Windows extends JFrame {
                         commitPSA.doClick();
                     }
                     if(e.getButton() == e.BUTTON3) {
-                        new Introduction("PSA");
+                        try {
+                            new Introduction("PSA");
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
 
@@ -529,7 +544,7 @@ public class Windows extends JFrame {
             commitHRRN.setVerticalTextPosition(JLabel.CENTER);
             commitHRRN.setMargin(new Insets(0,0,0,0));
             commitHRRN.setBorder(null);
-            commitHRRN.setToolTipText("右击显示算法简介");
+            commitHRRN.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>右击显示算法简介</font></body></html>");
             commitHRRN.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -537,7 +552,11 @@ public class Windows extends JFrame {
                         commitHRRN.doClick();
                     }
                     if(e.getButton() == e.BUTTON3) {
-                        new Introduction("HRRN");
+                        try {
+                            new Introduction("HRRN");
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
 
@@ -628,6 +647,7 @@ public class Windows extends JFrame {
             back.setVerticalTextPosition(JLabel.CENTER);
             back.setMargin(new Insets(0,0,0,0));
             back.setBorder(null);
+            back.setToolTipText("<html><body><font face=华文行楷 size=5 color=cyan>返回上一层菜单</font></body></html>");
             back.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
