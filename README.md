@@ -33,4 +33,4 @@ Introduction  | 算法简介类
 ![FCFS](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/F.png)  
 ![SJF](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/G.png)  
 ![PSA](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/H.png)  
-![HRRN](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/I.png)  
+![HRRN](https://github.com/Garletta/JobSchedulingAlgorithm/raw/master/Images/I2.png)  
